@@ -42,7 +42,8 @@ public class calculationControllers {
 		String myExpression = (String)request.queryParams("expression");
 		int save = Integer.parseInt(request.queryParams("save"));
 
-		float result = calculationControllers.calculateExpression(myExpression);
+		String postfija = parserExpression.aPostfija(myExpression);
+		Double result = parserExpression.evaluatePosfija(postfija);
 		map.put("myexpression", myExpression);
 		map.put("myresult", result);
 
@@ -64,7 +65,7 @@ public class calculationControllers {
 						PreparedStatement statementTwo = con.prepareStatement(queryTwo);
 						statementTwo.setInt(1, id);
 						statementTwo.setString(2, myExpression);
-						statementTwo.setString(3, Float.toString(result));
+						statementTwo.setString(3, Double.toString(result));
 						statementTwo.executeUpdate();
 					} catch (SQLException ex) {
 		   				ex.printStackTrace();
@@ -78,40 +79,6 @@ public class calculationControllers {
 		}
 		return new ModelAndView(map, "./views/mycalculator.html");
 	}
-
-	private static float calculateExpression(String myExpression){
-		Map map = new HashMap();
-
-		int pos = myExpression.indexOf('+');
-		if (pos != -1) {
-	    	return calculateExpression(myExpression.substring(0, pos)) + calculateExpression(myExpression.substring(pos + 1));
-		} else {
-		    pos = myExpression.indexOf('-');
-		    if (pos != -1) {
-				return calculateExpression(myExpression.substring(0, pos)) - calculateExpression(myExpression.substring(pos + 1));
-		    } else {
-				pos = myExpression.indexOf('*');
-				if (pos != -1) {
-				    return calculateExpression(myExpression.substring(0, pos)) * calculateExpression(myExpression.substring(pos + 1));
-				} else {
-				    pos = myExpression.indexOf('/');
-				    if (pos != -1) 
-						return calculateExpression(myExpression.substring(0, pos)) / calculateExpression(myExpression.substring(pos + 1));
-				}
-			}
-		}
-
-		String toProcess = myExpression.trim();
-		if( toProcess == null || toProcess.isEmpty() )
-	    	return 0;
-		    
-		return Float.parseFloat(toProcess);
-	}
-
-	/*private static Boolean containsParent(String myExpression){
-		if (myExpression.indexOf('(') != -1) return true;
-		return false;
-	}*/
 
 	private static Map checkOperation(Request request, Response response){
 		int idOperation = Integer.parseInt(request.queryParams("idOperation"));
