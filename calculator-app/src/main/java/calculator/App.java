@@ -1,3 +1,9 @@
+/**
+ * Title: App
+ * Description: Class that contains everything related to parsing and evaluating an expression
+ * @author: Agustin Juarez
+*/
+
 package calculator;
 
 import controllers.*;

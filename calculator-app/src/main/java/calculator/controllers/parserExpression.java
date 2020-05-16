@@ -1,15 +1,29 @@
+/**
+ * Title: parserExpression
+ * Description: Class that contains everything related to parsing and evaluating an expression
+ * @author: Agustin Juarez
+*/
+
 package controllers;
 
 import java.util.*;
 
 public class parserExpression {
 
+	/**
+	* Description: Auxiliary method which checks if token is +, -, *, /
+	* @return: Boolean
+	*/
 	private static Boolean isOperator(String token) {
 		if (token.compareTo("+") == 0 || token.compareTo("-") == 0 || token.compareTo("*") == 0 || token.compareTo("/") == 0)
 			return true;
 		return false;
 	}
 
+	/**
+	* Description: Method which converts an infix to a postfix expression
+	* @return: String
+	*/
 	public static String aPostfija(String infija) {
 		Stack<String> stack = new Stack<String>();
 		String[] bagExpression = infija.split("(?=[-+*/()])|(?<=[-+*/()])");
@@ -44,6 +58,10 @@ public class parserExpression {
    		return postfija;
 	}
 
+	/**
+	* Description: Method which evaluates a postfix expression
+	* @return: Double
+	*/
 	public static Double evaluatePosfija(String postfija) {
 		Stack<Double> stack = new Stack<Double>();
 

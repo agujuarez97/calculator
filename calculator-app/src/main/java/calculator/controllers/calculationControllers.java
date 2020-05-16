@@ -1,3 +1,9 @@
+/**
+ * Title: calculationControllers
+ * Description: This class controls all the actions belonging to an calculator
+ * @author: Agustin Juarez
+*/
+
 package controllers;
 
 import db.*;
@@ -13,21 +19,38 @@ public class calculationControllers {
 
 	static Connection con = dbConexion.getConnection();
 
+	/**
+	* Description: This method redirects the init.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView start(Request request, Response response){
 		Map map = new HashMap();
 		return new ModelAndView(map, "./views/init.html");
 	}
 
+	/**
+	* Description: This method redirects the mycalculator.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView myCalculator(Request request, Response response){
 		Map map = new HashMap();
 		return new ModelAndView(map, "./views/mycalculator.html");
 	}
 
+	/**
+	* Description: This method redirects the consultoperation.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView consult(Request request, Response response){
 		Map map = new HashMap();
 		return new ModelAndView(map, "./views/consultoperation.html");
 	}
 
+	/**
+	* Description: The method queries a stored operation. If this operation does not exist, it redirects to the consulttoperation.html view showing an error message, 
+	*			   otherwise it redirects to the showoperation.html view to show this operation
+	* @return: ModelAndView
+	*/
 	public static ModelAndView consultOperation(Request request, Response response){
 		Map map = calculationControllers.checkOperation(request, response);
 
@@ -37,6 +60,11 @@ public class calculationControllers {
 			return new ModelAndView(map, "./views/showoperation.html");
 	}
 
+	/**
+	* Description: Method which performs the evaluation of an expression. First, it takes the infix expression and passes it to postfix to later evaluate that expression.
+	*              In addition to evaluating the expression in case you have selected to evaluate and save the expression the save
+	* @return: ModelAndView
+	*/
 	public static ModelAndView calculate(Request request, Response response){
 		Map map = new HashMap();
 		String myExpression = (String)request.queryParams("expression");
@@ -80,6 +108,10 @@ public class calculationControllers {
 		return new ModelAndView(map, "./views/mycalculator.html");
 	}
 
+	/**
+	* Description: Method which searches for a stored expression, at home that exists, returns it but returns an error message
+	* @return: ModelAndView
+	*/
 	private static Map checkOperation(Request request, Response response){
 		int idOperation = Integer.parseInt(request.queryParams("idOperation"));
 		Map mapOperations = new HashMap();
