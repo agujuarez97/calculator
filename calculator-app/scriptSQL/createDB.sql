@@ -1,4 +1,4 @@
--- Script que me permite crear la BD
+-- Script to generate the calculation database
 
 drop database if exists calculation;
 
