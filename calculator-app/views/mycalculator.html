@@ -3,6 +3,7 @@
 <head>
 
 	<title>Calculadora</title>
+    <link rel='stylesheet' href='/css/fondo.css'>
     <link rel='stylesheet' href='/css/style.css'>
 	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -17,17 +18,17 @@
 
             <form class="form" method="post" action="/calculate">
 
-                    <input type="text" id="inputExpression" name="expression" placeholder="MyExpression" value="{{myexpression}}" required autofocus>
+                    <input type="text" id="inputExpression" name="expression" placeholder="Ingrese aquí la exresión a evaluar" value="{{myexpression}}" required autofocus>
 
                     <h4> = </h4>
 
-                    <input type="text" id="outputExpression" name="result" placeholder="ResultExpression" value="{{myresult}}" disabled>
+                    <input type="text" id="outputExpression" name="result" placeholder="Resultado de la expresión" value="{{myresult}}" disabled>
 
                     <label><input type="radio" name="save" value="1" checked>No guardar operación</label><br>
 
                     <label><input type="radio" name="save" value="2">Guardar operación</label>
 
-                    <input type="text" id="idSaveO" name="idSave" placeholder="IDSaveOperation">
+                    <input type="text" id="idSaveO" name="idSave" placeholder="Ingrese aquí el ID con el cual va a guardar la operación">
 
                     <a href="/calculate"><input type="submit" class="btn btn-primary" value="Calcular">
 
