@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Calculadora</title>
+    <link rel='stylesheet' href='/css/style.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h4> EN ESTA CALCULADORA PODRAS REALIZAR OPERACIONES COMO: SUMA, RESTA, MULTIPLICACION y DIVISION </h4>
+
+        <div class="card card-container">
+
+            <form class="form" method="post" action="/calculate">
+
+                    <input type="text" id="inputExpression" name="expression" placeholder="MyExpression" value="{{myexpression}}" required autofocus>
+
+                    <h4> = </h4>
+
+                    <input type="text" id="outputExpression" name="result" placeholder="ResultExpression" value="{{myresult}}" disabled>
+
+                    <label><input type="radio" name="save" value="1" checked>No guardar operación</label><br>
+
+                    <label><input type="radio" name="save" value="2">Guardar operación</label>
+
+                    <input type="text" id="idSaveO" name="idSave" placeholder="IDSaveOperation">
+
+                    <a href="/calculate"><input type="submit" class="btn btn-primary" value="Calcular">
+
+                    <a href="/init"><input type="button" class="btn btn-primary" value="Vovler al menú">
+
+                </form>
+
+                {{{error}}}
+                {{{saveExit}}}
+
+        </div>
+
+    </div>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

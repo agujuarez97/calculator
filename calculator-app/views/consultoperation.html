@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Consultar Operacion</title>
+    <link rel='stylesheet' href='/css/style.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h4> POR FAVOR INGRESE EL ID DE LA OPERACION A CONSULTAR </h4>
+
+        <div class="card card-container">
+
+            <form class="form" method="get" action="/consultOperation">
+
+                    <input type="text" id="idOperation" name="idOperation" placeholder="IdOperation" required autofocus>
+
+                    <a href="/consultOperation"><input type="submit" class="btn btn-primary" value="Consultar">
+
+                    <a href="/init"><input type="button" class="btn btn-primary" value="Volver al menú">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+
+    </div>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
