@@ -61,20 +61,28 @@ public class calculationControllers {
 	}
 
 	/**
-	* Description: Method which performs the evaluation of an expression. First, it takes the infix expression and passes it to postfix to later evaluate that expression.
+	* Description: Method which performs the evaluation of an expression. First check that the expression is well balanced in terms of parentheses. Second, it takes the infix expression and passes it to postfix to later evaluate that expression.
 	*              In addition to evaluating the expression in case you have selected to evaluate and save the expression the save
 	* @return: ModelAndView
 	*/
 	public static ModelAndView calculate(Request request, Response response){
 		Map map = new HashMap();
 		String myExpression = (String)request.queryParams("expression");
-		int save = Integer.parseInt(request.queryParams("save"));
+
+		//Check that the expression is balanced in parentheses
+		if (!parserExpression.balancedExpression(myExpression.split("(?=[-+*/()])|(?<=[-+*/()])"))){
+			map.put("myexpression", myExpression);
+			map.put("error", "<div class='alert alert-danger'><strong>Expresión invalida:</strong> Error en su sintaxis.</div>");
+			return new ModelAndView(map, "./views/mycalculator.html");
+		}
 
 		String postfija = parserExpression.aPostfija(myExpression);
-		Double result = parserExpression.evaluatePosfija(postfija);
+		Double result = parserExpression.evaluatePostfija(postfija);
 		map.put("myexpression", myExpression);
 		map.put("myresult", result);
 
+		//Check if the operation wants to be saved
+		int save = Integer.parseInt(request.queryParams("save"));
 		if (save == 1)
 			return new ModelAndView(map, "./views/mycalculator.html");
 		else {

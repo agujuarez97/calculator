@@ -21,6 +21,30 @@ public class parserExpression {
 	}
 
 	/**
+	* Description: Auxiliary method which checks if the expression is balanced with respect to its parentheses
+	* @return: Boolean
+	*/
+	public static Boolean balancedExpression(String[] bagExpression) {
+		Stack<String> stack = new Stack<String>();
+
+		for (String subExpression: bagExpression) {
+			if (subExpression.compareTo("(") == 0)
+				stack.push(subExpression);
+			if (subExpression.compareTo(")") == 0) {
+				if (!stack.empty()) {
+					if (stack.peek().compareTo("(") == 0)
+						stack.pop();
+				} else 
+					return false;
+			}
+		}
+
+		if (!stack.empty())
+			return false;
+		return true;
+	}
+
+	/**
 	* Description: Method which converts an infix to a postfix expression
 	* @return: String
 	*/
@@ -55,14 +79,14 @@ public class parserExpression {
 		while(!stack.empty())
 			postfija += (stack.pop() + " ");
 
-   		return postfija;
+	   	return postfija;
 	}
 
 	/**
 	* Description: Method which evaluates a postfix expression
 	* @return: Double
 	*/
-	public static Double evaluatePosfija(String postfija) {
+	public static Double evaluatePostfija(String postfija) {
 		Stack<Double> stack = new Stack<Double>();
 
 		postfija = postfija.trim();
