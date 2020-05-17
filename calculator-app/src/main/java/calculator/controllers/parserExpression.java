@@ -83,7 +83,7 @@ public class parserExpression {
 	}
 
 	/**
-	* Description: Method which evaluates a postfix expression
+	* Description: Method which evaluates a postfix expression. 
 	* @return: Double
 	*/
 	public static Double evaluatePostfija(String postfija) {
@@ -98,13 +98,21 @@ public class parserExpression {
 				stack.push(value);
 			} catch(NumberFormatException ex) {
 				double secondOperator = stack.pop();
-				double firstOperator = stack.pop();
-				switch(subExpression) {       
-					case "+"    :   stack.push(firstOperator+secondOperator); break;
-					case "-"    :   stack.push(firstOperator-secondOperator); break;
-					case "*"    :   stack.push(firstOperator*secondOperator); break;
-					case "/"    :   stack.push(firstOperator/secondOperator); break;
-				} 
+				try {
+					double firstOperator = stack.pop();
+					try {
+						switch(subExpression) {       
+							case "+"    :   stack.push(firstOperator+secondOperator); break;
+							case "-"    :   stack.push(firstOperator-secondOperator); break;
+							case "*"    :   stack.push(firstOperator*secondOperator); break;
+							case "/"    :   stack.push(firstOperator/secondOperator); break;
+						}
+					} catch(EmptyStackException exSecond) {
+						return null;
+					}
+				} catch(EmptyStackException exFirst) {
+					return null;
+				}
 			}
 		}
 		return stack.pop();

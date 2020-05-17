@@ -78,6 +78,14 @@ public class calculationControllers {
 
 		String postfija = parserExpression.aPostfija(myExpression);
 		Double result = parserExpression.evaluatePostfija(postfija);
+
+		//Check that the expression is syntactically correct
+		if (result == null) {
+			map.put("myexpression", myExpression);
+			map.put("error", "<div class='alert alert-danger'><strong>Expresión invalida:</strong> Error en su sintaxis.</div>");
+			return new ModelAndView(map, "./views/mycalculator.html");
+		}
+
 		map.put("myexpression", myExpression);
 		map.put("myresult", result);
 
