@@ -21,9 +21,13 @@ REST: Interfaz en REST.
 
 ACLARACIONES:
 
-Una vez clonado el proyecto lo pirmero que debera hacer es: Correr el archivo /calculator/scriptSQL/createDB.sql el cual genera la base de datos con sus respectivas tablas en MySql.
+Una vez clonado el proyecto debera: 
 
-Lo segundo que debera hacer sera: Dirigirse a /calculator/calculator-app/src/main/java/calculator/db/dbConexion.java y cambiar el usuario y contraeña por su usuario de mysql con su respectiva contraseña, para que no exista algun problema en la conexión.
+	- Dirigirse a la linea 93 del archivo pom.xml (<mainClass>/home/agustin/Documents/calculator-app/src/main/java/calculator/App</mainClass>) y cambiar la dirección que aparece por la nueva direccion donde se encuentra la App en se PC.
+
+	- Correr el archivo /calculator/scriptSQL/createDB.sql el cual genera la base de datos con sus respectivas tablas en MySql.
+
+	-Dirigirse a /calculator/calculator-app/src/main/java/calculator/db/dbConexion.java y cambiar el usuario y contraeña por su usuario de mysql con su respectiva contraseña, para que no exista algun problema en la conexión.
 
 EJECUTAR APLICACIÓN:
 
