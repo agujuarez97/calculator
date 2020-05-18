@@ -32,7 +32,7 @@ public class calculationControllers {
 	* Description: This method redirects the mycalculator.html view
 	* @return: ModelAndView
 	*/
-	public static ModelAndView myCalculator(Request request, Response response){
+	public static ModelAndView redirectsMyCalculator(Request request, Response response){
 		Map map = new HashMap();
 		return new ModelAndView(map, "./views/mycalculator.html");
 	}
@@ -41,7 +41,7 @@ public class calculationControllers {
 	* Description: This method redirects the consultoperation.html view
 	* @return: ModelAndView
 	*/
-	public static ModelAndView consult(Request request, Response response){
+	public static ModelAndView redirectsConsultOperation(Request request, Response response){
 		Map map = new HashMap();
 		return new ModelAndView(map, "./views/consultoperation.html");
 	}
@@ -65,7 +65,7 @@ public class calculationControllers {
 	*              In addition to evaluating the expression in case you have selected to evaluate and save the expression the save
 	* @return: ModelAndView
 	*/
-	public static ModelAndView calculate(Request request, Response response){
+	public static ModelAndView calculateOperation(Request request, Response response){
 		Map map = new HashMap();
 		String myExpression = (String)request.queryParams("expression");
 
