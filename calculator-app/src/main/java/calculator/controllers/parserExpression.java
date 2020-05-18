@@ -75,7 +75,7 @@ public class parserExpression {
 			}
 			else if (isOperator(subExpressionCurrent)) {
 				if (!stack.empty()) {
-					while (!stack.empty() && isOperator(stack.peek()) && precedenceOperators.get(subExpressionCurrent) < precedenceOperators.get(stack.peek())) 
+					while (!stack.empty() && isOperator(stack.peek()) && precedenceOperators.get(subExpressionCurrent) <= precedenceOperators.get(stack.peek())) 
 						postfija += (stack.pop() + " ");
 				}
 				stack.push(subExpressionCurrent);
