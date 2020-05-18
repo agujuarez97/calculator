@@ -50,6 +50,14 @@ public class parserExpression {
 	*/
 	public static String aPostfija(String infija) {
 		Stack<String> stack = new Stack<String>();
+
+		//Initialize operator precedence level. Multiplication and division higher precedence level than addition and subtraction
+		HashMap<String, Integer> precedenceOperators  = new HashMap<String, Integer>();
+		precedenceOperators.put("*", 1);
+		precedenceOperators.put("/", 1);
+		precedenceOperators.put("+", 0);
+		precedenceOperators.put("-", 0);
+
 		String[] bagExpression = infija.split("(?=[-+*/()])|(?<=[-+*/()])");
 
 		String subExpressionCurrent;
@@ -67,7 +75,7 @@ public class parserExpression {
 			}
 			else if (isOperator(subExpressionCurrent)) {
 				if (!stack.empty()) {
-					while (!stack.empty() && isOperator(stack.peek())) 
+					while (!stack.empty() && isOperator(stack.peek()) && precedenceOperators.get(subExpressionCurrent) < precedenceOperators.get(stack.peek())) 
 						postfija += (stack.pop() + " ");
 				}
 				stack.push(subExpressionCurrent);
